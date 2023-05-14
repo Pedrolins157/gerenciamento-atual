@@ -5,6 +5,7 @@ include_once "autenticacao.php";
 <html lang="pt-br">
 
 <?php include_once "layout/read.php" ?>
+
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -37,8 +38,7 @@ include_once "autenticacao.php";
                     <p class="h5 mb-2 mt-3 text-gray-800 ml-1  w-75 mx-auto ">Dados do Usuário</p>
 
                     <!-- enctype="multipart/form-data habilita o form a enviar arquivo -->
-                    <form action="gravar-usuario.php" class="w-75 mx-auto" method="post" autocomplete="off"
-                        enctype="multipart/form-data">
+                    <form action="gravar-usuario.php" class="w-75 mx-auto" method="post" autocomplete="off" enctype="multipart/form-data">
                         <div class="row">
                             <!-- Nome & e-mail -->
                             <div class="col-md-6">
@@ -50,8 +50,7 @@ include_once "autenticacao.php";
                             </div>
                             <!--data nascimento & cpf & foto -->
                             <div class="col-md-4">
-                                <input type="text" name="dtnasc" id="data" placeholder="Data de Nascimento"
-                                    class="form-control mb-2">
+                                <input type="text" name="dtnasc" id="data" placeholder="Data de Nascimento" class="form-control mb-2">
                             </div>
 
                             <div class="col-md-4">
@@ -60,8 +59,7 @@ include_once "autenticacao.php";
                             </div>
 
                             <div class="col-md-4">
-                                <input type="file" name="foto" placeholder="foto perfil"
-                                    class="form-control-file mb-2 mt-1" accept="png,jpg,jpeg">
+                                <input type="file" name="foto" placeholder="foto perfil" class="form-control-file mb-2 mt-1" accept="png,jpg,jpeg">
                             </div>
 
                             <div class="col-md-4">
@@ -85,24 +83,19 @@ include_once "autenticacao.php";
                                 <input type="text" class="form-control mb-2" placeholder="Cep" id="cep" name="cep">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" class="form-control mb-2" id="logradouro" placeholder="Logradouro"
-                                    name="logradouro">
+                                <input type="text" class="form-control mb-2" id="logradouro" placeholder="Logradouro" name="logradouro">
                             </div>
                             <div class="col-md-2">
-                                <input type="text" class="form-control mb-2" id="numero" placeholder="Numero"
-                                    name="numero">
+                                <input type="text" class="form-control mb-2" id="numero" placeholder="Numero" name="numero">
                             </div>
                             <div class="col-md-4">
-                                <input type="text" class="form-control mb-2" placeholder="Complemento"
-                                    name="complemento">
+                                <input type="text" class="form-control mb-2" placeholder="Complemento" name="complemento">
                             </div>
                             <div class="col-md-2">
-                                <input type="text" class="form-control mb-2" id="bairro" placeholder="Bairro"
-                                    name="bairro">
+                                <input type="text" class="form-control mb-2" id="bairro" placeholder="Bairro" name="bairro">
                             </div>
                             <div class="col-md-4">
-                                <input type="text" class="form-control mb-2" id="cidade" placeholder="Cidade"
-                                    name="cidade">
+                                <input type="text" class="form-control mb-2" id="cidade" placeholder="Cidade" name="cidade">
                             </div>
                             <div class="col-md-1">
                                 <input type="text" class="form-control mb-2" id="uf" placeholder="Uf" name="uf">
@@ -114,6 +107,13 @@ include_once "autenticacao.php";
                             </button>
                         </div>
                     </form>
+                    <style>
+                        .error {
+                            color: #e90e0e;
+                            font-size: 15px;
+                            font-weight: bold;
+                        }
+                    </style>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -124,7 +124,7 @@ include_once "autenticacao.php";
             <!-- Footer -->
             <?php
             include "layout/footer.php"
-                ?>
+            ?>
             <!-- End of Footer -->
 
         </div>
@@ -169,7 +169,7 @@ include_once "autenticacao.php";
         // post = envia, get consulta, put = atualiza, delete = deleta;
 
         //ele adiciona um evento atraves do monitoramento, usando a "addEventListener",
-        cep.addEventListener('keyup', function () {
+        cep.addEventListener('keyup', function() {
 
 
             let cepDigitado = cep.value;
@@ -198,58 +198,59 @@ include_once "autenticacao.php";
 
             }
         })
-
-
     </script>
 
 
     <!-- Jquery -->
     <script>
-
         //jquery abaixo identifica todos os jquery interpretados na predefinição "document".
-        $(document).ready(function () {
+        $(document).ready(function() {
 
 
             //mascaras do formulario usando mask
             $("#data").mask("00/00/0000");
             $("#cpf").mask("000.000.000-00");
             $("#cep").mask("00000-000");
-            $("#cpf").keyup(function(){
+            $("#cpf").keyup(function() {
                 let = cpfDigitado = $("#cpf").val();
-                $.post("consulta-cpf.php",
-                {cpf:cpfDigitado},
-                function (resposta){
-                    if(resposta != ''){
-                        $("#errocpf").html(resposta);
-                    $("#btn-cadastrar-usuario").attr("disabled",true);
-                    }else{
-                        $("#cpf").html('');
-                    $("#btn-cadastrar-usuario").attr("disabled",false);
-                    }
+                $.post("consulta-cpf.php", {
+                        cpf: cpfDigitado
+                    },
+                    function(resposta) {
+                        if (resposta != '') {
+                            $("#errocpf").html(resposta);
+                            $("#btn-cadastrar-usuario").attr('disabled', true);
+                        } else {
+                            $("#cpf").html('');
+                            $("#btn-cadastrar-usuario").attr("disabled", false);
+                        }
 
-                });
+                    });
             });
 
 
 
-            $("#login").blur(function(){
+            $("#login").blur(function() {
                 let = loginDigitado = $("#login").val();
                 //alert(loginDigitado);
-            
-               $.post("consulta-login.php",
-               {login:loginDigitado},
-               function (resposta) {
-                if(resposta != ''){
-                    $("#errologin").html(resposta);
-                    $("#btn-cadastrar-usuario").attr("disabled",true);
-                    
-                }else{
-                    $("#errologin").html('');
-                    $("#btn-cadastrar-usuario").attr("disabled",false);
-                }
-               });
-            
+
+                $.post("consulta-login.php", {
+                        login: loginDigitado
+                    },
+                    function(resposta) {
+                        if (resposta != '') {
+                            $("#errologin").html(resposta);
+                            $("#btn-cadastrar-usuario").attr("disabled", true);
+
+                        } else {
+                            $("#errologin").html('');
+                            $("#btn-cadastrar-usuario").attr("disabled", false);
+                        }
+                    });
+
             });
+
+            
 
             $("form").validate({
                 rules: {
@@ -315,7 +316,7 @@ include_once "autenticacao.php";
                     }
                 }
             });
-
+            
 
         })
     </script>
