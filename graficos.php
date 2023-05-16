@@ -24,9 +24,8 @@
                 ?>
                 <!-- End of Topbar -->
 
-                <!-- Begin Page Content -->
-                <div id="chart_div" style=" margin-top:1%; margin-left: 20px ;width: 80%; height: 500px;"></div>
-
+                <!--grafico de comparação diario-->
+                <canvas class="line-chart"></canvas>
 
                 <!-- /.container-fluid -->
 
@@ -41,6 +40,43 @@
         <!-- End of Content Wrapper -->
 
     </div>
+    <!-- cdn do chart.js-->
+    <canvas id="myChart" width="{}" height="{}"></canvas>
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: '{line}',
+
+        data: {
+            labels: {},
+            datasets: [{
+                label: "My Chart",
+                data: {},
+                backgroundColor: {},
+                borderColor: {},
+                borderWidth: {}
+            }]
+        },
+
+        options: {
+            title: {
+                text: "My Chart",
+                display: {true},
+            },
+            events: [{}],
+            legend: {
+                display: {true},
+            },
+            tooltips: {
+                mode: '{}'
+            },
+            layout: {{}},
+            animation: {{}}
+        }
+    });
+</script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 </body>
 
 </html>
